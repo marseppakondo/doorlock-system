@@ -12,7 +12,7 @@ const io = new Server(server);
 
 // Middleware untuk melayani file socket.io
 app.use(
-  "../socket.io",
+  "/socket.io",
   express.static(
     path.join(__dirname, "node_modules", "socket.io", "client-dist")
   )
@@ -21,7 +21,7 @@ app.use(
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../Layar monitor/index.html"));
+  res.sendFile(path.join(__dirname, "/index.html"));
 });
 
 io.on("connection", (socket) => {
