@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOORLOCK</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io("http://192.168.1.17:3888"); // Ganti dengan alamat IP server Anda
+      socket.on("data", ({ data }) => {
+        let component = document.getElementById("data");
+        component.textContent = "dari arduino => " + data;
+      });
+
+      function Arduino(data) {
+        fetch("http://192.168.1.17:3888/arduinoApi", {
+          // Ganti dengan alamat IP server Anda
+          method: "POST",
+          body: JSON.stringify({ data }),
+          headers: { "Content-Type": "application/json" },
+        });
+      }
+    </script>
+  </head>
+  <body>
+    Testing monitor
+    <p id="data"></p>
+    <button onclick="Arduino('1')">Buka Pintu</button>
+    <button onclick="Arduino('2')">Kunci Pintu</button>
+  </body>
+</html>
