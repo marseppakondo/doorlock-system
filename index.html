@@ -6,14 +6,14 @@
     <title>DOORLOCK</title>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      const socket = io("http://192.168.1.17:3888"); // Ganti dengan alamat IP server Anda
+      const socket = io("http://ipserver:3888"); // Ganti dengan alamat IP server Anda
       socket.on("data", ({ data }) => {
         let component = document.getElementById("data");
         component.textContent = "dari arduino => " + data;
       });
 
       function Arduino(data) {
-        fetch("http://192.168.1.17:3888/arduinoApi", {
+        fetch("http://ipserver:3888/arduinoApi", {
           // Ganti dengan alamat IP server Anda
           method: "POST",
           body: JSON.stringify({ data }),
